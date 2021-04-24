@@ -11,17 +11,16 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>Scoreboard</title>
   </head>
-  <body>
-    <h1 class="display text-center">Scoreboard</h1>
+  <body class="bg-secondary">
+    <h1 class="display text-center text-white">Scoreboard</h1>
     <div id="num-of-players-div" class="text-center">
-        <p class="lead">How many players are there?</p>
-        <input type="text" id="num-of-players-input">
-        <button id="num-of-players-button">Submit</button>
+        <p class="lead text-white">How many players are there?</p>
+        <input type="text" id="num-of-players-input" class="p-2">
+        <button id="num-of-players-button" class="btn btn-primary">Submit</button>
         <p class="text-danger text-center" id="error-text">Please enter a number that is greater than 0.</p>
     </div>
-    <div class="container d-flex" id="scoreboard-container">
-     
-
+    <div id="scoreboard-container" class="mx-4">
+    <!--Scorecards are entered via JS-->
     </div>
 
     <!-- Optional JavaScript -->

@@ -22,20 +22,21 @@ const displayPlayerCards = () => {
     
     for (let i = 1; i <= playerInputValue; i++) {
         cardHTML += `
-        <div class="card text-center w-50 mx-auto" data-index="Player ${i}">
-        <div class="card-header">
-            
-        </div>
-        <div class="card-body">
-            <input type="text" id="player${i}-name" class="player-name-input">
-            <h5 class="card-title player-name">Player ${i}</h5>
-            <p class="card-text player-score">0</p>
-            <button class="btn btn-primary mx-2 subtract-btn">-</button><button class="btn btn-primary mx-2 add-btn">+</button>
-        </div>
-        </div>`
+                <div class="card text-center" data-index="Player ${i}">
+                <div class="card-header">
+                    
+                </div>
+                <div class="card-body">
+                    <input type="text" id="player${i}-name" class="player-name-input">
+                    <h5 class="card-title player-name">Player ${i}</h5>
+                    <p class="card-text player-score">0</p>
+                    <button class="btn btn-light mx-2 subtract-btn">-</button><button class="btn btn-dark mx-2 add-btn">+</button>
+                </div>
+                </div>
+          `
     }
 
-    document.querySelector('.container').insertAdjacentHTML('afterEnd', cardHTML);
+    document.querySelector('#scoreboard-container').insertAdjacentHTML('beforeEnd', cardHTML);
 }
 
 
@@ -71,3 +72,4 @@ document.querySelector('body').addEventListener('keyup', (e) => {
  
     }
 })
+
