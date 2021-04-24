@@ -4,6 +4,10 @@
     border: none;
 }
 
+button {
+    cursor: pointer;
+}
+
 /*Media Queries*/
 @media (min-width: 768px) {
     #scoreboard-container {

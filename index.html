@@ -13,14 +13,18 @@
   </head>
   <body class="bg-secondary">
     <h1 class="display text-center text-white">Scoreboard</h1>
-    <div id="num-of-players-div" class="text-center">
+    <div id="num-of-players-div" class="text-center my-5">
         <p class="lead text-white">How many players?</p>
         <input type="text" id="num-of-players-input" class="p-2">
         <button id="num-of-players-button" class="btn btn-primary">Submit</button>
-        <p class="text-danger text-center d-none" id="error-text">Please enter a number that is greater than 0.</p>
+        <p class="text-danger text-center" id="error-text">Please enter a number that is greater than 0.</p>
     </div>
     <div id="scoreboard-container" class="mx-4">
     <!--Scorecards are entered via JS-->
+    </div>
+    <div class="mx-auto text-center">
+      <button id="save-button" class="btn btn-dark w-25 mx-3 my-5">Save</button>
+      <button id="clear-button" class="btn btn-light w-25 mx-3 my-5">Clear</button>
     </div>
 
     <!-- Optional JavaScript -->

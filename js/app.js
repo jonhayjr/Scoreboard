@@ -1,9 +1,12 @@
+//Hide error text 
+document.getElementById('error-text').style.display = 'none';
+
 //Displays number of cards based on player number input
 const displayPlayerCards = () => {
     //Select Number of Players Input
     const playerNumInput = document.getElementById('num-of-players-input');
     //Get Number of Players Input Value
-    const playerInputValue = parseInt(playerNumInput.value);
+    let playerInputValue = parseInt(playerNumInput.value);
 
     //Hide error text 
     document.getElementById('error-text').style.display = 'none';
@@ -14,14 +17,21 @@ const displayPlayerCards = () => {
         document.getElementById('error-text').style.display = '';
         return;
     }
-    
-    //Hide number of players input
-    document.getElementById('num-of-players-div').style.display = 'none';
 
+    //Saves input value to local storage
+    localStorage.setItem('Number-Of-Players', JSON.stringify(playerInputValue));
+    
+
+    //Creates HTML elements for scoreboard
+    createScoreboardHTML(playerInputValue);
+}
+
+//Creates HTML content
+const createScoreboardHTML = (num) => {
     let cardHTML = '';
     
     //Create HTML elements based on the number of players entered
-    for (let i = 1; i <= playerInputValue; i++) {
+    for (let i = 1; i <= num; i++) {
         cardHTML += `
                 <div class="card text-center" data-index="Player ${i}">
                 <div class="card-header">
@@ -29,15 +39,17 @@ const displayPlayerCards = () => {
                 </div>
                 <div class="card-body">
                     <input type="text" id="player${i}-name" class="player-name-input text-center" value="Player ${i}">
-                    <p class="card-text display-4 player-score">0</p>
+                    <p class="card-text display-4 player-score" id="player${i}-score">0</p>
                     <button class="btn btn-light mx-2 subtract-btn">-</button><button class="btn btn-dark mx-2 add-btn">+</button>
                 </div>
                 </div>
           `;
     }
+    //Adds HTML to scoreboard container
+    document.querySelector('#scoreboard-container').innerHTML = cardHTML;
 
-    //Add HTML to scoreboard container
-    document.querySelector('#scoreboard-container').insertAdjacentHTML('beforeEnd', cardHTML);
+    //Get saved values from local storage
+    getItems();
 }
 
 //Adds event listener to submit button for number of players inputs.  On click, the displayPlayerCards function runs
@@ -70,3 +82,73 @@ document.querySelector('body').addEventListener('click', (e) => {
     }
 })
 
+//Saves player name and score items to local storage
+const saveItems = () => {
+    const playerNames = document.querySelectorAll('.player-name-input');
+     playerNames.forEach(name => {
+         localStorage.setItem(name.id, JSON.stringify(name.value));
+     })
+
+     const playerScores = document.querySelectorAll('.player-score');
+     playerScores.forEach(score => {
+        localStorage.setItem(score.id, JSON.stringify(score.innerHTML));
+    })
+}
+
+//Gets player name and score values from local storage 
+const getItems = () => {
+    const playerNames = document.querySelectorAll('.player-name-input');
+    playerNames.forEach(name => {
+        const localStorageValue = JSON.parse(localStorage.getItem(name.id));
+        if (localStorageValue) {
+            name.value = localStorageValue;
+        }
+    })
+
+    const playerScores = document.querySelectorAll('.player-score');
+     playerScores.forEach(score => {
+        const localStorageValue = JSON.parse(localStorage.getItem(score.id));
+        if (localStorageValue) {
+            score.innerHTML = localStorageValue;
+        }
+    })
+}
+
+//Removes local storage settings and sets default values;
+const removeItems = () => {
+    const playerNames = document.querySelectorAll('.player-name-input');
+    playerNames.forEach(name => {
+        localStorage.removeItem(name.id);
+        const defaultName = name.parentElement.parentElement.getAttribute('data-index');
+        name.value = defaultName;
+    }) 
+
+    const playerScores = document.querySelectorAll('.player-score');
+    playerScores.forEach(score => {
+       localStorage.removeItem(score.id);
+        score.innerHTML = '0';
+   })
+}
+
+
+
+//Adds event listener to body on click
+document.querySelector('body').addEventListener('click', (e) => {
+    //If save button is clicked, save to local storage
+    if (e.target.id === 'save-button') {
+        saveItems();
+    }
+    //If clear button is clicked, clear local storage and set default values
+    if (e.target.id === 'clear-button') {
+        removeItems();
+    }
+});
+
+//When content is load, check to see if number of players is stored in local storage and create Elements based on that.
+document.addEventListener('DOMContentLoaded', () => {
+    const localStorageValue = JSON.parse(localStorage.getItem('Number-Of-Players'));
+    if (localStorageValue) {
+        createScoreboardHTML(parseInt(localStorageValue));
+        document.getElementById('num-of-players-input').value = localStorageValue;
+    }
+});
