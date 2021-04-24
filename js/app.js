@@ -1,5 +1,3 @@
-//Hide error text 
-document.getElementById('error-text').style.display = 'none';
 
 //Displays number of cards based on player number input
 const displayPlayerCards = () => {
@@ -8,13 +6,8 @@ const displayPlayerCards = () => {
     //Get Number of Players Input Value
     let playerInputValue = parseInt(playerNumInput.value);
 
-    //Hide error text 
-    document.getElementById('error-text').style.display = 'none';
-
     //If there is no value or value is not a number, display error text
     if (!playerInputValue || isNaN(playerInputValue)) {
-        //Unhide error text
-        document.getElementById('error-text').style.display = '';
         return;
     }
 
