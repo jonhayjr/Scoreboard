@@ -1,6 +1,9 @@
 #scoreboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
 	justify-content: center;
 	align-content: center;
+    grid-gap: 10px;
 }
 
 .player-name-input {
@@ -15,8 +18,12 @@ button {
 /*Media Queries*/
 @media (min-width: 768px) {
     #scoreboard-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+    }
+}
+
+@media (min-width: 1024px) {
+    #scoreboard-container {
+        grid-template-columns: repeat(auto-fit, 300px);
     }
 }
