@@ -5,7 +5,7 @@
 
 .player-name-input {
     outline: none;
-    border: none;
+    border:  none;
 }
 
 button {
@@ -18,5 +18,7 @@ button {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 10px;
+		max-width: 75%;
+		margin: auto;
     }
 }
