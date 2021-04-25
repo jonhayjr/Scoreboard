@@ -145,3 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('num-of-players-input').value = localStorageValue;
     }
 });
+
+//This function checks to see if hide link is clicked and then hides or shows number of players div
+document.querySelector('#hide').addEventListener('click', () => {
+    const hideLink = document.querySelector('#hide');
+    const div = document.querySelector('#num-of-players-div');
+    if (hideLink.innerHTML === 'Hide') {
+        div.style.display = 'none';
+        hideLink.innerHTML = 'Show';
+    } else {
+        div.style.display = '';
+        hideLink.innerHTML = 'Hide';
+    }
+})
