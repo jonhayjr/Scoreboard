@@ -1,3 +1,6 @@
+#scoreboard-container {
+	justify-content: center;
+}
 
 .player-name-input {
     outline: none;
