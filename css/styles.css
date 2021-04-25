@@ -15,15 +15,7 @@ button {
 @media (min-width: 768px) {
     #scoreboard-container {
         display: grid;
-        grid-template-columns: repeat(2, minmax(300px, 1fr));
-        grid-gap: 20px;
-    }
-}
-
-@media (min-width: 1024px) {
-    #scoreboard-container {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 20px;
     }
 }
