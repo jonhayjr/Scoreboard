@@ -121,6 +121,17 @@ const removeItems = () => {
        localStorage.removeItem(score.id);
         score.innerHTML = '0';
    })
+
+   //Remove scorecard HTML
+   const scoreboardContainer = document.getElementById('scoreboard-container');
+   scoreboardContainer.innerHTML = '';
+
+   //Clear number of players input
+   const playerNumberInput = document.getElementById('num-of-players-input');
+   playerNumberInput.value = '';
+
+   //Clear number of players from local storage
+   localStorage.removeItem('Number-Of-Players');
 }
 
 
