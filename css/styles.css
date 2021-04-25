@@ -1,5 +1,6 @@
 #scoreboard-container {
 	justify-content: center;
+	align-content: center;
 }
 
 .player-name-input {
@@ -15,7 +16,7 @@ button {
 @media (min-width: 768px) {
     #scoreboard-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 20px;
     }
 }
