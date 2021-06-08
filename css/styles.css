@@ -6,7 +6,8 @@
     grid-gap: 10px;
 }
 
-.player-name-input {
+.player-name-input,
+.player-score-input {
     outline: none;
     border: none;
     cursor: pointer;

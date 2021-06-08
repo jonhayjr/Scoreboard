@@ -32,8 +32,8 @@ const createScoreboardHTML = (num) => {
                 </div>
                 <div class="card-body">
                     <input type="text" id="player${i}-name" class="player-name-input text-center" value="Player ${i}">
-                    <p class="card-text display-4 player-score" id="player${i}-score">0</p>
-                    <button class="btn btn-light mx-2 subtract-btn">-</button><button class="btn btn-dark mx-2 add-btn">+</button>
+                    <input class="card-text text-center player-score d-block mx-auto mb-3 mt-3 player-score-input" id="player${i}-score" value="0"/>
+                    <button class="btn btn-light mx-2 subtract-btn text-center">-</button><button class="btn btn-dark mx-2 text-center add-btn">+</button>
                 </div>
                 </div>
           `;
@@ -56,22 +56,22 @@ document.querySelector('body').addEventListener('click', (e) => {
         //Selects score element
         const scoreElement = e.target.previousElementSibling.previousElementSibling;
         //Grabs current score
-        let scoreHTML = parseInt(scoreElement.innerHTML);
+        let scoreValue = parseInt(scoreElement.value);
         //Adds 1 to current score
-        scoreHTML++;
+        scoreValue++;
         //Updates score element HTML
-        scoreElement.innerHTML = scoreHTML;
+        scoreElement.value = scoreValue;
     }
     //Checks to see if subtract element was clicked
     if (e.target.classList.contains('subtract-btn')) {
         //Selects score element
         const scoreElement = e.target.previousElementSibling;
         //Grabs current score
-        let scoreHTML = parseInt(scoreElement.innerHTML);
+        let scoreValue = parseInt(scoreElement.value);
         //Subtracts 1 from the current score
-        scoreHTML--;
+        scoreValue--;
         //Updates score element HTML
-        scoreElement.innerHTML = scoreHTML;
+        scoreElement.value = scoreValue;
     }
 })
 
@@ -84,7 +84,7 @@ const saveItems = () => {
 
      const playerScores = document.querySelectorAll('.player-score');
      playerScores.forEach(score => {
-        localStorage.setItem(score.id, JSON.stringify(score.innerHTML));
+        localStorage.setItem(score.id, JSON.stringify(score.value));
     })
 }
 
@@ -102,7 +102,7 @@ const getItems = () => {
      playerScores.forEach(score => {
         const localStorageValue = JSON.parse(localStorage.getItem(score.id));
         if (localStorageValue) {
-            score.innerHTML = localStorageValue;
+            score.value = localStorageValue;
         }
     })
 }
@@ -119,7 +119,7 @@ const removeItems = () => {
     const playerScores = document.querySelectorAll('.player-score');
     playerScores.forEach(score => {
        localStorage.removeItem(score.id);
-        score.innerHTML = '0';
+        score.value= '0';
    })
 
    //Remove scorecard HTML
